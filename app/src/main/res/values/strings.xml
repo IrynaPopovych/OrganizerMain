@@ -1,15 +1,18 @@
 <resources>
-    <string name="app_name">Органайзер</string>
+    <string name="app_name">Оранайзер</string>
     <string-array name="views_array">
-        <item>Первый экран</item>
-        <item>Второй экран</item>
-        <item>Третий экран</item>
+        <item>Органайзер</item>
+        <item>Розклад</item>
+        <item>Нова подія</item>
     </string-array>
     <string name="menu">Меню</string>
-    <string name="first_screen">Первый экран</string>
-    <string name="second_screen">Второй экран</string>
-    <string name="third_screen">Третий экран</string>
+    <string name="first_screen">Органайзер</string>
+    <string name="second_screen">Розклад</string>
+    <string name="third_screen">Нова подія</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="app_not_available">Додаток не доступний</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
