@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.support.design.widget.NavigationView;
 
+import com.p_v.flexiblecalendar.FlexibleCalendarView;
+
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -23,24 +25,32 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private ActionBarDrawerToggle mDrawerToggle;
 
-   @Override
-   protected void onCreate(Bundle savedInstanceState) {
-       super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_main);
-
-       // Set a Toolbar to replace the ActionBar.
-       toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private CalendarFragment calendarFragment;
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Set a Toolbar to replace the ActionBar.
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
-       mNavigationView = (NavigationView) findViewById(R.id.naw_view);
+        mNavigationView = (NavigationView) findViewById(R.id.naw_view);
 
-       initDrawer();
-       // Setup drawer view
-       setupDrawerContent(mNavigationView);
+        initDrawer();
+        // Setup drawer view
+        setupDrawerContent(mNavigationView);
 
-   }
+        initCalendar();
+    }
+
+    private void initCalendar() {
+        calendarFragment = new CalendarFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_view, calendarFragment).commit();
+    }
+
 
     private void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

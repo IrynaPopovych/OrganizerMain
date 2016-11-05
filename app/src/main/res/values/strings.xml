@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Оранайзер</string>
+    <string name="app_name">Органайзер</string>
     <string-array name="views_array">
         <item>Органайзер</item>
         <item>Розклад</item>
