@@ -1,4 +1,4 @@
-package com.example.bohdan.myorganizermain;
+package com.example.bohdan.myorganizermain.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+
+import com.example.bohdan.myorganizermain.CalendarFragment;
+import com.example.bohdan.myorganizermain.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -86,20 +89,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // The action bar home/up action should open or close the drawer.
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     // `onPostCreate` called when activity start-up is complete after `onStart()`
     // NOTE! Make sure to override the method with only a single `Bundle` argument
     @Override
