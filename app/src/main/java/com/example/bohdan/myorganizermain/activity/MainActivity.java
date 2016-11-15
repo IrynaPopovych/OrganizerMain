@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
     // `onPostCreate` called when activity start-up is complete after `onStart()`
     // NOTE! Make sure to override the method with only a single `Bundle` argument
     @Override
@@ -112,6 +113,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
         mDrawerLayout.closeDrawers();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
