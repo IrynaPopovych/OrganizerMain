@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.bohdan.myorganizermain.CalendarFragment;
+import com.example.bohdan.myorganizermain.EventDetailsFragment;
 import com.example.bohdan.myorganizermain.R;
 
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
 
     private CalendarFragment calendarFragment;
+    private EventDetailsFragment eventDetailsFragment;
 
 
     @Override
@@ -101,18 +103,26 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
 
         switch (menuItem.getItemId()) {
-            case R.id.nav_my_calendar:
+            case R.id.item_menu_month:
+                openMonthCalendar();
+                break;
+            case R.id.item_menu_day:
+                openEventsForDay();
+                break;
 
-                break;
-           /* case R.id.nav_marks:
-                fragmentClass = MarksFragment.class;
-                break;
-            case R.id.nav_settings:
-                fragmentClass = SettingsFragment.class;
-                break;*/
 
         }
         mDrawerLayout.closeDrawers();
+    }
+
+    private void openMonthCalendar() {
+        calendarFragment = new CalendarFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_view, calendarFragment).commit();
+    }
+
+    private void openEventsForDay() {
+        eventDetailsFragment = new EventDetailsFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_view, eventDetailsFragment).commit();
     }
 
     @Override

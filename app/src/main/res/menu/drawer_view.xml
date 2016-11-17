@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_my_calendar"
+            android:id="@+id/item_menu_month"
             android:icon="@android:drawable/ic_menu_month"
             android:title="Місяць" />
         <item
-            android:id="@+id/menu"
+            android:id="@+id/item_menu_day"
             android:icon="@android:drawable/ic_menu_today"
             android:title="День" />
         <item
