@@ -1,4 +1,4 @@
-package com.example.bohdan.myorganizermain;
+package com.example.bohdan.myorganizermain.activity;
 
 import android.Manifest;
 import android.content.AsyncQueryHandler;
@@ -28,6 +28,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bohdan.myorganizermain.CalendarCursor;
+import com.example.bohdan.myorganizermain.EventEditView;
+import com.example.bohdan.myorganizermain.R;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
