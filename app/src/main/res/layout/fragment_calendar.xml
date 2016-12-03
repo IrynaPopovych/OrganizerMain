@@ -41,6 +41,13 @@
                 app:rippleColor="@android:color/white" />
         </com.p_v.flexiblecalendar.FlexibleCalendarView>
 
+
+        <Button
+            android:layout_weight="0"
+            android:id="@+id/btn_add_new_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add new event"/>
     </LinearLayout>
 
 </FrameLayout>

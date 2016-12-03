@@ -1,5 +1,6 @@
 package com.example.bohdan.myorganizermain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bohdan.myorganizermain.activity.AddNewEventActivity;
 import com.p_v.flexiblecalendar.FlexibleCalendarView;
 import com.p_v.flexiblecalendar.entity.Event;
 import com.p_v.flexiblecalendar.view.BaseCellView;
@@ -27,6 +29,8 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
     private Toolbar toolbar;
     private AppCompatActivity activity;
     private TextView txtMonthName;
+
+    private Calendar selectedDay;
 
     public CalendarHelper(AppCompatActivity activity, FlexibleCalendarView flexibleCalendarView, TextView txtMonthName) {
         this.activity = activity;
@@ -49,7 +53,7 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
 
                 String monthName = cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
                 txtMonthName.setText(monthName);
-              //  Toast.makeText(activity, cal.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.ENGLISH) + " " + year, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(activity, cal.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.ENGLISH) + " " + year, Toast.LENGTH_SHORT).show();
             }
         });
         flexibleCalendarView.setCalendarView(new FlexibleCalendarView.CalendarView() {
@@ -126,6 +130,16 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
     public void onDateClick(int year, int month, int day) {
         Calendar cal = Calendar.getInstance();
         cal.set(year, month, day);
+
+
+        selectedDay = cal;
         // Toast.makeText(this,cal.getTime().toString()+ " Clicked",Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    public Calendar getSelectedCalendar() {
+
+        return selectedDay;
     }
 }

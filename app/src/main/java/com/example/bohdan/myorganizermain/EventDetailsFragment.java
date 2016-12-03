@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bohdan.myorganizermain.database.EventRealmObject;
+import com.example.bohdan.myorganizermain.database.RealmHelper;
 import com.example.bohdan.myorganizermain.models.EventDetailItem;
 
 import java.util.ArrayList;
@@ -47,8 +49,16 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
     }
 
     private void initListOfEvents() {
-        for (int i = 0; i < 20; i++) {
-            eventDetailItems.add(new EventDetailItem());
+        RealmHelper realmHelper = new RealmHelper(getActivity());
+        if (eventDetailItems != null) {
+            eventDetailItems.clear();
+        }
+
+        for (EventRealmObject event : realmHelper.getAllEvents()) {
+            EventDetailItem eventDetailItem = new EventDetailItem(event.getEventName(), event.getTimeFrom(), event.getTimeTo(),
+                    event.getYear(), event.getMonth(), event.getDay());
+
+            eventDetailItems.add(eventDetailItem);
         }
     }
 

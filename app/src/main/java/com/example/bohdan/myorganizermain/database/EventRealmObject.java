@@ -1,28 +1,29 @@
-package com.example.bohdan.myorganizermain.models;
+package com.example.bohdan.myorganizermain.database;
+
+import io.realm.RealmObject;
 
 /**
- * Created by bohdan on 17.11.16.
+ * Created by bohdan on 03.12.16.
  */
 
-public class EventDetailItem {
-    private String name, timeFrom, timeTo;
-    private int year, month, day;
+public class EventRealmObject extends RealmObject {
+    private String eventName;
+    private String timeFrom;
+    private String timeTo;
+    private int year;
+    private int month;
+    private int day;
 
-    public EventDetailItem(String name, String timeFrom, String timeTo, int year, int month, int day) {
-        this.name = name;
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
-        this.year = year;
-        this.month = month;
-        this.day = day;
+    public EventRealmObject() {
+
     }
 
-    public String getName() {
-        return name;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public String getTimeFrom() {
