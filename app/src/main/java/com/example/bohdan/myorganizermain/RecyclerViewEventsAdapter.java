@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,13 @@ public class RecyclerViewEventsAdapter extends RecyclerView.Adapter<RecyclerView
         holder.txtName.setText(eventDetailItem.getName());
         holder.txtTimeFromTo.setText(eventDetailItem.getTimeFrom() + " - " + eventDetailItem.getTimeTo());
         holder.txtDate.setText(eventDetailItem.getDay() + "." + eventDetailItem.getMonth() + "." + eventDetailItem.getYear());
+
+        holder.imgIconClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventItemListener.onDeleteClick(eventDetailItem);
+            }
+        });
     }
 
     @Override
@@ -57,6 +65,7 @@ public class RecyclerViewEventsAdapter extends RecyclerView.Adapter<RecyclerView
     class EventViewHolder extends RecyclerView.ViewHolder {
         LinearLayout itemContainer;
         TextView txtName, txtTimeFromTo, txtDate;
+        ImageView imgIconClose;
 
         public EventViewHolder(View itemView) {
             super(itemView);
@@ -64,10 +73,13 @@ public class RecyclerViewEventsAdapter extends RecyclerView.Adapter<RecyclerView
             txtName = (TextView) itemView.findViewById(R.id.event_name);
             txtTimeFromTo = (TextView) itemView.findViewById(R.id.txt_time_from_to);
             txtDate = (TextView) itemView.findViewById(R.id.event_date);
+
+            imgIconClose = (ImageView) itemView.findViewById(R.id.icon_close);
         }
     }
 
     public interface EventItemListener {
         void onClick(EventDetailItem eventDetailItem);
+        void onDeleteClick(EventDetailItem eventDetailItem);
     }
 }

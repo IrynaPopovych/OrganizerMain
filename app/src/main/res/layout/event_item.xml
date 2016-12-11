@@ -53,10 +53,11 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/icon_close"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_margin="16dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_delete" />
 
     </LinearLayout>
 

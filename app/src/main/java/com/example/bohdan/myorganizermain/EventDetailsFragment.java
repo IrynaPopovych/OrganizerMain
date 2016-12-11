@@ -18,12 +18,14 @@ import com.example.bohdan.myorganizermain.database.RealmHelper;
 import com.example.bohdan.myorganizermain.models.EventDetailItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EventDetailsFragment extends Fragment implements View.OnClickListener {
+public class EventDetailsFragment extends Fragment {
     private ArrayList<EventDetailItem> eventDetailItems = new ArrayList<>();
     private RecyclerView recyclerViewEvents;
     private RecyclerViewEventsAdapter recyclerViewEventsAdapter;
@@ -60,6 +62,19 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
 
             eventDetailItems.add(eventDetailItem);
         }
+
+        Collections.sort(eventDetailItems, new Comparator<EventDetailItem>() {
+            @Override
+            public int compare(EventDetailItem o1, EventDetailItem o2) {
+                int result =o2.getDateTime().compareTo(o1.getDateTime());
+
+                return result;
+            }
+        });
+
+
+
+
     }
 
     private void initViews(View view) {
@@ -71,14 +86,27 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
             public void onClick(EventDetailItem eventDetailItem) {
                 handleEventClick(eventDetailItem);
             }
+
+            @Override
+            public void onDeleteClick(EventDetailItem eventDetailItem) {
+                handleDeleteEvent(eventDetailItem);
+            }
         });
         recyclerViewEvents.setAdapter(recyclerViewEventsAdapter);
 
-        tvGetMsg = (TextView) view.findViewById(R.id.tvGetMessage);
+       /* tvGetMsg = (TextView) view.findViewById(R.id.tvGetMessage);
         edit = (EditText) view.findViewById(R.id.editText);
         butGetMsg = (Button) view.findViewById(R.id.butGetText);
 
-        butGetMsg.setOnClickListener(this);
+        butGetMsg.setOnClickListener(this);*/
+    }
+
+    private void handleDeleteEvent(EventDetailItem eventDetailItem) {
+        RealmHelper realmHelper = new RealmHelper(getActivity());
+
+        realmHelper.deleteEventFromDatabase(eventDetailItem);
+        eventDetailItems.remove(eventDetailItem);
+        recyclerViewEventsAdapter.notifyDataSetChanged();
     }
 
     private void handleEventClick(EventDetailItem eventDetailItem) {
@@ -93,10 +121,5 @@ public class EventDetailsFragment extends Fragment implements View.OnClickListen
 
     }
 
-    @Override
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
-        tvGetMsg.setText(edit.getText());
-    }
 }
 

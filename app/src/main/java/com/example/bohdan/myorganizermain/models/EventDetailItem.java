@@ -1,5 +1,8 @@
 package com.example.bohdan.myorganizermain.models;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by bohdan on 17.11.16.
  */
@@ -7,6 +10,7 @@ package com.example.bohdan.myorganizermain.models;
 public class EventDetailItem {
     private String name, timeFrom, timeTo;
     private int year, month, day;
+    private long databaseId;
 
     public EventDetailItem(String name, String timeFrom, String timeTo, int year, int month, int day) {
         this.name = name;
@@ -15,6 +19,14 @@ public class EventDetailItem {
         this.year = year;
         this.month = month;
         this.day = day;
+    }
+
+    public Date getDateTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.YEAR, year);
+        return calendar.getTime();
     }
 
     public String getName() {

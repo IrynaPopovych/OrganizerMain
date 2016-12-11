@@ -2,6 +2,8 @@ package com.example.bohdan.myorganizermain.database;
 
 import android.content.Context;
 
+import com.example.bohdan.myorganizermain.models.EventDetailItem;
+
 import java.util.ArrayList;
 
 import io.realm.Realm;
@@ -42,22 +44,35 @@ public class RealmHelper {
     }
 
 
-
-    public ArrayList<EventRealmObject> getAllEvents(){
+    public ArrayList<EventRealmObject> getAllEvents() {
         ArrayList<EventRealmObject> eventRealmObjectArrayList = new ArrayList<>();
 
-      //  RealmResults<EventRealmObject>  results = realm.where(EventRealmObject.class)
+        //  RealmResults<EventRealmObject>  results = realm.where(EventRealmObject.class)
         //        .findAllSorted(EventRealmObject.TIME_MILIS, Sort.ASCENDING);
 
         Realm realm = Realm.getInstance(context);
         RealmResults<EventRealmObject> result = realm.where(EventRealmObject.class).findAll();
 
-        for (EventRealmObject event : result){
+        for (EventRealmObject event : result) {
             eventRealmObjectArrayList.add(event);
         }
 
 
         return eventRealmObjectArrayList;
+    }
+
+    public void deleteEventFromDatabase(EventDetailItem eventDetailItem) {
+        Realm realm = Realm.getInstance(context);
+
+        realm.beginTransaction();
+
+        realm.where(EventRealmObject.class).equalTo("eventName", eventDetailItem.getName())
+                .equalTo("year", eventDetailItem.getYear())
+                .equalTo("month", eventDetailItem.getMonth())
+                .equalTo("day", eventDetailItem.getDay()).findAll().clear();
+
+        realm.commitTransaction();
+
     }
 
 }
