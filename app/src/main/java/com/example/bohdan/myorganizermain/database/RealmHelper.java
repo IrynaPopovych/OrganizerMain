@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
+
 /**
  * Created by bohdan on 03.12.16.
  */
@@ -36,10 +37,17 @@ public class RealmHelper {
         newEvent.setDay(objectForSaving.getDay());
 
         realm.commitTransaction();
+
+
     }
+
+
 
     public ArrayList<EventRealmObject> getAllEvents(){
         ArrayList<EventRealmObject> eventRealmObjectArrayList = new ArrayList<>();
+
+      //  RealmResults<EventRealmObject>  results = realm.where(EventRealmObject.class)
+        //        .findAllSorted(EventRealmObject.TIME_MILIS, Sort.ASCENDING);
 
         Realm realm = Realm.getInstance(context);
         RealmResults<EventRealmObject> result = realm.where(EventRealmObject.class).findAll();
@@ -51,4 +59,5 @@ public class RealmHelper {
 
         return eventRealmObjectArrayList;
     }
+
 }

@@ -13,27 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:backgroundTint="@android:color/holo_red_light"
-        app:fabSize="normal"
-        app:rippleColor="@android:color/white"
-        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <TextView
-        android:id="@+id/tvGetMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Список подій" />
 
-    <Button
-        android:id="@+id/butGetText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Прочитати дані" />
+
 </LinearLayout>

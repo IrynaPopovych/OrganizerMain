@@ -7,6 +7,7 @@ import io.realm.RealmObject;
  */
 
 public class EventRealmObject extends RealmObject {
+
     private String eventName;
     private String timeFrom;
     private String timeTo;
@@ -17,6 +18,8 @@ public class EventRealmObject extends RealmObject {
     public EventRealmObject() {
 
     }
+
+
 
     public String getEventName() {
         return eventName;

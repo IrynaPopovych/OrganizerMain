@@ -26,20 +26,8 @@
             android:id="@+id/flexible_calendar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="72dp"
-                android:clickable="true"
-                app:fabSize="mini"
-                app:srcCompat="@android:drawable/ic_input_add"
-                android:id="@+id/floatingActionButton"
-                android:layout_weight="0.07"
-                android:gravity="center_horizontal"
-                app:backgroundTint="@android:color/holo_red_light"
-                app:rippleColor="@android:color/white" />
-        </com.p_v.flexiblecalendar.FlexibleCalendarView>
 
 
         <Button
@@ -47,7 +35,7 @@
             android:id="@+id/btn_add_new_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add new event"/>
+            android:text="Додати нову подію"/>
     </LinearLayout>
 
 </FrameLayout>

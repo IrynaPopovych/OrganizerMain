@@ -19,7 +19,7 @@
         android:id="@+id/event_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name of new event"
+        android:hint="Нова подія"
         android:padding="16dp" />
 
     <LinearLayout
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From: "
+            android:text="Час з: "
             android:textSize="20sp" />
 
         <EditText
@@ -38,13 +38,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="From"
+            android:hint=""
             android:padding="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="To: "
+            android:text="до: "
             android:textSize="20sp" />
 
         <EditText
@@ -52,14 +52,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="To"
+            android:hint=""
             android:padding="16dp" />
 
 
     </LinearLayout>
     <Button
         android:id="@+id/btn_save"
-        android:text="Save"
+        android:text="Зберегти"
         android:layout_width="match_parent"
         android:padding="16dp"
         android:layout_height="wrap_content" />
