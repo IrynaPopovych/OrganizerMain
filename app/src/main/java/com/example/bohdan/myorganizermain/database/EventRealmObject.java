@@ -68,4 +68,5 @@ public class EventRealmObject extends RealmObject {
     public void setDay(int day) {
         this.day = day;
     }
+
 }

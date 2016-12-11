@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bohdan.myorganizermain.activity.AddNewEventActivity;
+import com.example.bohdan.myorganizermain.database.EventRealmObject;
+import com.example.bohdan.myorganizermain.database.RealmHelper;
+import com.example.bohdan.myorganizermain.models.EventDetailItem;
 import com.p_v.flexiblecalendar.FlexibleCalendarView;
 import com.p_v.flexiblecalendar.entity.Event;
 import com.p_v.flexiblecalendar.view.BaseCellView;
@@ -30,7 +33,9 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
     private AppCompatActivity activity;
     private TextView txtMonthName;
 
+    private ArrayList<EventDetailItem> eventDetailItems = new ArrayList<>();
     private Calendar selectedDay;
+
 
     public CalendarHelper(AppCompatActivity activity, FlexibleCalendarView flexibleCalendarView, TextView txtMonthName) {
         this.activity = activity;
@@ -43,6 +48,8 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
 
     private void initCalendar() {
         initMonthName();
+
+        initEventsList();
 
         flexibleCalendarView.setOnDateClickListener(this);
         flexibleCalendarView.setOnMonthChangeListener(new FlexibleCalendarView.OnMonthChangeListener() {
@@ -95,13 +102,35 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
         flexibleCalendarView.setEventDataProvider(new FlexibleCalendarView.EventDataProvider() {
             @Override
             public List<? extends Event> getEventsForTheDay(int year, int month, int day) {
-                if (year == 2016 && month == 8 && day == 25) {
+
+                int count = 0;
+                for (EventDetailItem event : eventDetailItems) {
+
+                    if (event.getYear() == year && event.getMonth() - 1 == month && event.getDay() == day) {
+                        count++;
+
+                    }
+
+                }
+
+
+                List<CustomEvent> colorLst1 = new ArrayList<>();
+                for (int i = 0; i < count; i++) {
+
+                    colorLst1.add(new CustomEvent(android.R.color.holo_red_dark));
+                }
+
+                return colorLst1;
+
+
+               /* if (year == 2017 && month == 1 && day == 1) {
                     List<CustomEvent> colorLst1 = new ArrayList<>();
                     colorLst1.add(new CustomEvent(android.R.color.holo_green_dark));
                     colorLst1.add(new CustomEvent(android.R.color.holo_blue_light));
                     colorLst1.add(new CustomEvent(android.R.color.holo_purple));
                     return colorLst1;
-                }
+
+                }*//*
                 if (year == 2016 && month == 8 && day == 8) {
                     List<CustomEvent> colorLst1 = new ArrayList<>();
                     colorLst1.add(new CustomEvent(android.R.color.holo_green_dark));
@@ -113,10 +142,20 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
                     List<CustomEvent> colorLst1 = new ArrayList<>();
                     colorLst1.add(new CustomEvent(android.R.color.holo_purple));
                     return colorLst1;
-                }
-                return null;
+                }*/
+
             }
         });
+    }
+
+    private void initEventsList() {
+        RealmHelper realmHelper = new RealmHelper(activity);
+        for (EventRealmObject event : realmHelper.getAllEvents()) {
+            EventDetailItem eventDetailItem = new EventDetailItem(event.getEventName(), event.getTimeFrom(), event.getTimeTo(),
+                    event.getYear(), event.getMonth(), event.getDay());
+
+            eventDetailItems.add(eventDetailItem);
+        }
     }
 
     private void initMonthName() {
@@ -136,6 +175,10 @@ public class CalendarHelper implements FlexibleCalendarView.OnDateClickListener 
         // Toast.makeText(this,cal.getTime().toString()+ " Clicked",Toast.LENGTH_SHORT).show();
 
 
+    }
+
+    public void notifyItems(){
+        initCalendar();
     }
 
     public Calendar getSelectedCalendar() {
